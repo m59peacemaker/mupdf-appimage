@@ -7,4 +7,5 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: update
-        run: ../../scripts/foo.sh
+        run: ./scripts/foo.sh
+        working-directory: ./
