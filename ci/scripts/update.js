@@ -11,5 +11,6 @@ const { SOURCE, SOURCE_DIR } = process.env
 	const tags = exec('git', [ 'tag' ]).toString().trim().split(EOL)
 	if (!tags.includes(latestSourceTag)) {
 		spawn(`${__dirname}/update.sh`, [ latestSourceTag ], { cwd: SOURCE_DIR, stdio: 'inherit' })
+			.on('exit', code => process.exit(code))
 	}
 })()
