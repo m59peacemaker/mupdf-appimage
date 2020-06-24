@@ -13,7 +13,7 @@ git submodule update
 # add files needed for appimage
 rsync -a "${GITHUB_WORKSPACE}/project-root/ci/mupdf-files/" ./
 
-sudo apt-get update -qq && sudo apt-get -qq -y install xorg-dev mesa-common-dev libgl1-mesa-dev libxcursor-dev libxrandr-dev libxinerama-dev libgtk2.0-dev
+sudo apt-get update -qq && sudo apt-get -qq -y install xorg-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxrandr-dev libxinerama-dev libgtk2.0-dev
 
 gcc -Wl,--no-as-needed `pkg-config --cflags --libs gtk+-2.0` platform/x11/file_chooser.c -o file_chooser ; strip file_chooser
 ( cd thirdparty/ ; git submodule init ; git submodule update )
