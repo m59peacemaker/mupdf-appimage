@@ -21,5 +21,11 @@ jobs:
           repository: ${{ env.SOURCE }}
           path: mupdf
           submodules: true
+                uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - working-directory: project-root
+        run: npm install
       - working-directory: project-root
         run: ci/scripts/update.js "ArtifexSoftware/mupdf"
