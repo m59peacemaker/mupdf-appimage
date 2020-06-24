@@ -1,0 +1,9 @@
+name: update
+on:
+  schedule:
+    - cron: "*/2 * * * *"
+jobs:
+  update:
+    steps:
+      - name: echo
+        run: echo "foo"
