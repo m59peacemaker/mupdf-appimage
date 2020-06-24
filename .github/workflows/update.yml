@@ -22,7 +22,6 @@ jobs:
           repository: ${{ env.SOURCE }}
           path: mupdf
           fetch-depth: 0
-          submodules: true
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
