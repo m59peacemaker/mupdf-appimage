@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -42,6 +42,9 @@ rm -rf  ./appdir/usr/include appdir/usr/lib/*.a # Don't need to ship developer f
 cp -r appdir mupdf.AppDir
 cp file_chooser mupdf.AppDir/usr/bin
 mkdir -p ./mupdf.AppDir/usr/share/applications ; cp platform/x11/mupdf.desktop ./mupdf.AppDir/usr/share/applications/
+ls mupdf.AppDir
+ls mupdf.AppDir/usr
+ls mupdf.AppDir/usr/bin
 rm ./mupdf.AppDir/usr/bin/{mjsgen,mujstest,mupdf-x11,mupdf-x11-curl,muraster,mutool}
 wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 chmod a+x linuxdeployqt*.AppImage
