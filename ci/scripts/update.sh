@@ -45,7 +45,7 @@ mkdir -p ./mupdf.AppDir/usr/share/applications ; cp platform/x11/mupdf.desktop .
 ls mupdf.AppDir
 ls mupdf.AppDir/usr
 ls mupdf.AppDir/usr/bin
-rm ./mupdf.AppDir/usr/bin/{mjsgen,mujstest,mupdf-x11,mupdf-x11-curl,muraster,mutool}
+rm ./mupdf.AppDir/usr/bin/{mupdf-x11,muraster,mutool}
 wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
 chmod a+x linuxdeployqt*.AppImage
 unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
@@ -56,17 +56,10 @@ export VERSION=$(git rev-parse --short HEAD) # linuxdeployqt uses this for namin
 
 # mutool
 cp -r appdir mutool.AppDir
-rm ./mutool.AppDir/usr/bin/{mjsgen,mujstest,muraster,mupdf*}
+rm ./mutool.AppDir/usr/bin/{muraster,mupdf*}
 mkdir -p ./mutool.AppDir/usr/share/applications ; cp platform/x11/mutool.desktop ./mutool.AppDir/usr/share/applications/
 ./linuxdeployqt*.AppImage ./mutool.AppDir/usr/share/applications/*.desktop -bundle-non-qt-libs
 ./linuxdeployqt*.AppImage ./mutool.AppDir/usr/share/applications/*.desktop -appimage
-
-# mujstest
-cp -r appdir mujstest.AppDir
-rm ./mujstest.AppDir/usr/bin/{mjsgen,mutool,muraster,mupdf*}
-mkdir -p ./mujstest.AppDir/usr/share/applications ; cp platform/x11/mujstest.desktop ./mujstest.AppDir/usr/share/applications/
-./linuxdeployqt*.AppImage ./mujstest.AppDir/usr/share/applications/*.desktop -bundle-non-qt-libs
-./linuxdeployqt*.AppImage ./mujstest.AppDir/usr/share/applications/*.desktop -appimage
 
 rm ./linuxdeployqt*.AppImage
 wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
