@@ -1,5 +1,8 @@
 name: update
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: "*/5 * * * *"
 jobs:
@@ -7,4 +10,4 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: update
-        run: ls
+        run: ls && ls ../ && ls ../../ && ls ../../../ && printenv
