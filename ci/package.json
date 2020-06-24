@@ -1,0 +1,16 @@
+{
+  "name": "ci",
+  "private": true,
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "latest-github-tag": "^1.0.0"
+  }
+}

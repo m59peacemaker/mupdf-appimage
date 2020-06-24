@@ -5,10 +5,21 @@ on:
       - master
   schedule:
     - cron: "* */2 * * *"
+env:
+  SOURCE: ArtifexSoftware/mupdf
+  SOURCE_DIR: ${{ github.repository }}/mupdf
 jobs:
   update:
     runs-on: "ubuntu-20.04"
     steps:
-      - run: ls
-      #- uses: actions/checkout@v2
-      #- run: ./scripts/foo.sh
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          path: project-root
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ env.SOURCE }}
+          path: mupdf
+          submodules: true
+      - working-directory: project-root
+        run: ci/scripts/update.js "ArtifexSoftware/mupdf"
