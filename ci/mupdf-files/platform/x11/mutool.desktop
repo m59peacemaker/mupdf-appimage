@@ -5,5 +5,5 @@ Exec=mutool %f
 Icon=mupdf
 Terminal=true
 Type=Application
-MimeType=application/pdf;application/x-pdf
+MimeType=application/pdf;application/x-pdf;
 Categories=Graphics;
