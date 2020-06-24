@@ -7,7 +7,7 @@ on:
     - cron: "* */2 * * *"
 env:
   SOURCE: ArtifexSoftware/mupdf
-  SOURCE_DIR: ${{ github.repository }}/mupdf
+  SOURCE_DIR: ${{ github.workspace }}/mupdf
 jobs:
   update:
     runs-on: "ubuntu-20.04"
