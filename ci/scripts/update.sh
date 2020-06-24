@@ -8,12 +8,28 @@ git checkout "$TAG"
 
 # mupdf .gitmodules uses relative paths, assuming the projects are in the parent directory of the mupdf directory. This replaces those paths with GitHub urls to those projects.
 sed -i -E 's/url = ..\/(.+).git/url = https:\/\/github.com\/ArtifexSoftware\/\1/g' .gitmodules
-git submodule update
+git submodule update --init
 
 # add files needed for appimage
 rsync -a "${GITHUB_WORKSPACE}/project-root/ci/mupdf-files/" ./
 
-sudo apt-get update -qq && sudo apt-get -qq -y install xorg-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxrandr-dev libxinerama-dev libgtk2.0-dev
+sudo apt-get update -qq \
+	&& sudo apt-get -qq -y install \
+		xorg-dev \
+		mesa-common-dev \
+		libgl1-mesa-dev \
+		libglu1-mesa-dev \
+		libxcursor-dev \
+		libxrandr-dev \
+		libxinerama-dev \
+		libgtk2.0-dev \
+		mesa-common-dev \
+		libgl1-mesa-dev \
+		libglu1-mesa-dev \
+		xorg-dev \
+		libxcursor-dev \
+		libxrandr-dev \
+		libxinerama-dev
 
 gcc -Wl,--no-as-needed `pkg-config --cflags --libs gtk+-2.0` platform/x11/file_chooser.c -o file_chooser ; strip file_chooser
 ( cd thirdparty/ ; git submodule init ; git submodule update )
