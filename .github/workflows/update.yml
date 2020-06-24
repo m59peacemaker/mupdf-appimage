@@ -6,4 +6,4 @@ jobs:
   update:
     steps:
       - name: echo
-        run: echo "foo"
+        run: echo "foobar"
