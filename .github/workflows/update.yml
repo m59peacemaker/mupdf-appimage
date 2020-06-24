@@ -10,4 +10,5 @@ jobs:
     runs-on: "ubuntu-20.04"
     steps:
       - name: update
-        run: ls && ls ../ && ls ../../ && ls ../../../ && printenv
+        working-directory: ${{ github.workspace }}
+        run: ./scripts/foo.sh
