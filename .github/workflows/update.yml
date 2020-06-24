@@ -9,5 +9,6 @@ jobs:
   update:
     runs-on: "ubuntu-20.04"
     steps:
+      - uses: actions/checkout@v2
       - name: update
-        run: "${GITHUB_WORKSPACE}/scripts/foo.sh"
+        run: ./scripts/foo.sh
