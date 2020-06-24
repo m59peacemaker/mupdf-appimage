@@ -4,6 +4,7 @@ on:
     - cron: "*/2 * * * *"
 jobs:
   update:
+    runs-on: "ubuntu-20.04"
     steps:
       - name: echo
         run: echo "foobar"
