@@ -12,7 +12,7 @@ jobs:
   update:
     runs-on: "ubuntu-20.04"
     steps:
-      - run: apt-get update -qq && apt-get -qq -y install xorg-dev mesa-common-dev libgl1-mesa-dev libxcursor-dev libxrandr-dev libxinerama-dev libgtk2.0-dev
+      - run: sudo apt-get update -qq && sudo apt-get -qq -y install xorg-dev mesa-common-dev libgl1-mesa-dev libxcursor-dev libxrandr-dev libxinerama-dev libgtk2.0-dev
       - uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
