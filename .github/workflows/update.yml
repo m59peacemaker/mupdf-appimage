@@ -22,10 +22,10 @@ jobs:
           repository: ${{ env.SOURCE }}
           path: mupdf
           fetch-depth: 0
-      - id: set_build_tag
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - id: set_build_tag
         working-directory: project-root
         run: (cd ci && npm install && ./scripts/set_build_tag.js)
       - working-directory: project-root
