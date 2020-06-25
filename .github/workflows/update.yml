@@ -28,9 +28,9 @@ jobs:
       - id: set_build_tag
         working-directory: project-root
         run: (cd ci && npm install && ./scripts/set_build_tag.js)
-      - working-directory: project-root
-        if: steps.set_build_tag.outputs.build_tag
+      - if: steps.set_build_tag.outputs.build_tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
-        run: ci/scripts/build.sh
+        working-directory: mupdf
+        run: ${{ github.workspace }}/project-root/ci/scripts/build.sh
