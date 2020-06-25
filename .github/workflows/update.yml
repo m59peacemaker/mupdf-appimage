@@ -36,7 +36,7 @@ jobs:
         working-directory: mupdf
         run: ${{ github.workspace }}/project-root/ci/scripts/build.sh
       - id: create_release
-        if: steps.build.outputs.mupdf_AppImage_path && steps.build.output.mutool_AppImage_path
+        if: steps.build.outputs.mupdf_AppImage_path && steps.build.outputs.mutool_AppImage_path
         uses: actions/create-release@v1
         with:
           tag_name: ${{ steps.set_build_tag.outputs.build_tag }}
@@ -44,22 +44,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: upload-mupdf-appimage
-        if: steps.create_release.outputs.upload_url && steps.build.output.mupdf_AppImage_path
+        if: steps.create_release.outputs.upload_url && steps.build.outputs.mupdf_AppImage_path
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ steps.build.outputs.mupdf_AppImage_path }}
-          asset_name: ${{ steps.build.output.mupdf_AppImage_name }}
+          asset_name: ${{ steps.build.outputs.mupdf_AppImage_name }}
           asset_content_type: application/vnd.appimage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - id: upload-mutool-appimage
-        if: steps.create_release.outputs.upload_url && steps.build.output.mutool_AppImage_path
+        if: steps.create_release.outputs.upload_url && steps.build.outputs.mutool_AppImage_path
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ steps.build.outputs.mutool_AppImage_path }}
-          asset_name: ${{ steps.build.output.mutool_AppImage_name }}
+          asset_name: ${{ steps.build.outputs.mutool_AppImage_name }}
           asset_content_type: application/vnd.appimage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
