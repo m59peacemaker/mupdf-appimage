@@ -22,12 +22,15 @@ jobs:
           repository: ${{ env.SOURCE }}
           path: mupdf
           fetch-depth: 0
-      - uses: actions/setup-node@v1
+      - id: set_build_tag
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - working-directory: project-root/ci
-        run: npm install
+        working-directory: project-root
+        run: (cd ci && npm install && ./scripts/set_build_tag.js)
       - working-directory: project-root
+        if: steps.set_build_tag.outputs.build_tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ci/scripts/update.js
+          BUILD_TAG: ${{ steps.set_build_tag.outputs.build_tag }}
+        run: ci/scripts/build.sh

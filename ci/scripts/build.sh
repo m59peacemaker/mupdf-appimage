@@ -2,9 +2,7 @@
 
 set -e
 
-TAG="$1"
-
-git checkout "$TAG"
+git checkout "$BUILD_TAG"
 
 # mupdf .gitmodules uses relative paths, assuming the projects are in the parent directory of the mupdf directory. This replaces those paths with GitHub urls to those projects.
 sed -i -E 's/url = ..\/(.+).git/url = https:\/\/github.com\/ArtifexSoftware\/\1/g' .gitmodules
@@ -62,5 +60,4 @@ mkdir -p ./mutool.AppDir/usr/share/applications ; cp platform/x11/mutool.desktop
 ./linuxdeployqt*.AppImage ./mutool.AppDir/usr/share/applications/*.desktop -appimage
 
 rm ./linuxdeployqt*.AppImage
-wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-bash upload.sh ./*.AppImage*
+ls
