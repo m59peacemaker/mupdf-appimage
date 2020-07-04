@@ -6,7 +6,7 @@ git checkout "$BUILD_TAG"
 
 # mupdf .gitmodules uses relative paths, assuming the projects are in the parent directory of the mupdf directory. This replaces those paths with GitHub urls to those projects.
 sed -i -E 's/url = ..\/(.+).git/url = https:\/\/github.com\/ArtifexSoftware\/\1/g' .gitmodules
-git submodule update --init
+git submodule update --init --recursive
 
 # add files needed for appimage
 rsync -a "${GITHUB_WORKSPACE}/project-root/ci/mupdf-files/" ./
