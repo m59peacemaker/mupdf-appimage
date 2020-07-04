@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "latest-github-tag": "^1.0.0"
+    "semver": "^7.3.2"
   }
 }

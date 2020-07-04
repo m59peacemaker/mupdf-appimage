@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 
-const getLatestGithubTag = require('latest-github-tag')
 const { execFileSync: exec } = require('child_process')
 const { EOL } = require('os')
+const semver = require('semver')
 
-const { SOURCE } = process.env
+const { PROJECT_ROOT, SOURCE_DIR } = process.env
+
+const gitTags = dir => exec('git', [ 'tag' ], { cwd: dir }).toString().trim().split(EOL)
 
 ;(async () => {
-	const latestSourceTag = await getLatestGithubTag(...SOURCE.split('/'), { timeout: 10000 })
-	const tags = exec('git', [ 'tag' ]).toString().trim().split(EOL)
+	const sourceTags = gitTags(SOURCE_DIR)
+	const tags = gitTags(PROJECT_ROOT)
+	const latestSourceTag = sourceTags.sort((a, b) => semver.rcompare(a, b, { loose: true }))
+	console.log({ latestSourceTag })
 	if (!tags.includes(latestSourceTag)) {
-		console.log(`::set-output name=build_tag::${latestSourceTag}`)
+		//console.log(`::set-output name=build_tag::${latestSourceTag}`)
 	}
 })()
