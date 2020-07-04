@@ -11,9 +11,8 @@ const gitTags = dir => exec('git', [ 'tag' ], { cwd: dir }).toString().trim().sp
 ;(async () => {
 	const sourceTags = gitTags(SOURCE_DIR)
 	const tags = gitTags(PROJECT_ROOT)
-	const latestSourceTag = sourceTags.filter(semver.valid).sort(semver.rcompare)
-	console.log({ latestSourceTag })
+	const latestSourceTag = sourceTags.filter(semver.valid).sort(semver.rcompare)[0]
 	if (!tags.includes(latestSourceTag)) {
-		//console.log(`::set-output name=build_tag::${latestSourceTag}`)
+		console.log(`::set-output name=build_tag::${latestSourceTag}`)
 	}
 })()
